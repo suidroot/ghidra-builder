@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 
 MAINTAINER @dukebarman
 
@@ -33,10 +33,12 @@ USER dockerbot
 # Build tools are part of the builder image; project code is mounted
 RUN mkdir -p $HOME/.gradle/init.d/
 
-RUN wget https://services.gradle.org/distributions/gradle-6.0-bin.zip -P /tmp
+RUN wget https://services.gradle.org/distributions/gradle-7.3-bin.zip -P /tmp
+#RUN wget https://services.gradle.org/distributions/gradle-6.0-bin.zip -P /tmp
 RUN unzip -d $HOME/gradle /tmp/gradle-*.zip
 
-ENV GRADLE_HOME=/home/dockerbot/gradle/gradle-6.0
+ENV GRADLE_HOME=/home/dockerbot/gradle/gradle-7.3
+#ENV GRADLE_HOME=/home/dockerbot/gradle/gradle-6.0
 ENV PATH=$GRADLE_HOME/bin:$PATH
 
 RUN echo "\
